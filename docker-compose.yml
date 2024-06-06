@@ -1,0 +1,83 @@
+version: "3.7"
+
+services:
+  # MongoDB
+  cadmus-lon-mongo:
+    image: mongo
+    container_name: cadmus-lon-mongo
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    command: mongod --logpath=/dev/null
+    ports:
+      - 27017:27017
+    networks:
+      - cadmus-lon-network
+
+  # PostgreSQL
+  cadmus-lon-pgsql:
+    image: postgres
+    container_name: cadmus-lon-pgsql
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432
+    networks:
+      - cadmus-lon-network
+
+  # Biblio API
+  cadmus-biblio-api:
+    image: vedph2020/cadmus_biblio_api:5.1.1
+    container_name: cadmus-biblio-api
+    ports:
+      - 60058:8080
+    depends_on:
+      - cadmus-lon-mongo
+      - cadmus-lon-pgsql
+    environment:
+      - CONNECTIONSTRINGS__DEFAULT=mongodb://cadmus-lon-mongo:27017/{0}
+      - CONNECTIONSTRINGS__BIBLIO=Server=cadmus-lon-pgsql;port=5432;Database={0};User Id=postgres;Password=postgres;Include Error Detail=True
+      - SEED__BIBLIODELAY=50
+      - SERILOG__CONNECTIONSTRING=mongodb://cadmus-lon-mongo:27017/{0}-log
+      - STOCKUSERS__0__PASSWORD=P4ss-W0rd!
+    networks:
+      - cadmus-lon-network
+
+  # Cadmus lon API
+  cadmus-lon-api:
+    image: vedph2020/cadmus-lon-api:0.0.1
+    container_name: cadmus-lon-api
+    ports:
+      - 5003:80
+    depends_on:
+      - cadmus-lon-mongo
+      - cadmus-lon-pgsql
+      - cadmus-biblio-api
+    environment:
+      - CONNECTIONSTRINGS__DEFAULT=mongodb://cadmus-lon-mongo:27017/{0}
+      - CONNECTIONSTRINGS__INDEX=Server=cadmus-lon-pgsql;port=5432;Database={0};User Id=postgres;Password=postgres;Include Error Detail=True
+      - SERILOG__CONNECTIONSTRING=mongodb://cadmus-lon-mongo:27017/{0}-log
+      - STOCKUSERS__0__PASSWORD=P4ss-W0rd!
+      - SEED__INDEXDELAY=25
+      - MESSAGING__APIROOTURL=http://cadmusapi.azurewebsites.net
+      - MESSAGING__APPROOTURL=http://cadmusapi.com/
+      - MESSAGING__SUPPORTEMAIL=support@cadmus.com
+    networks:
+      - cadmus-lon-network
+
+  # Cadmus lon App
+  cadmus-app:
+    image: vedph2020/cadmus-lon-app:0.0.1
+    container_name: cadmus-lon-app
+    ports:
+      - 4200:80
+    depends_on:
+      - cadmus-lon-api
+    networks:
+      - cadmus-lon-network
+
+networks:
+  cadmus-lon-network:
+    driver: bridge

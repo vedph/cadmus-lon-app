@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@import "preview-styles.css";
+
+/*
+https://stackoverflow.com/questions/78535414/mattoolbar-color-doesnt-work-on-angular-material-v18-red-rose
+https://material.angular.io/guide/material-2-theming#optional-add-backwards-compatibility-styles-for-color-variants
+*/
+$theme: mat.define-theme();
+html {
+  @include mat.all-component-themes($theme);
+  @include mat.color-variants-backwards-compatibility($theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
