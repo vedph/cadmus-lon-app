@@ -2,6 +2,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@myrmidon/cadmus-lon-part-pg": [
+        "./dist/myrmidon/cadmus-lon-part-pg"
+      ],
+      "@myrmidon/cadmus-lon-part-ui": [
+        "./dist/myrmidon/cadmus-lon-part-ui"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
