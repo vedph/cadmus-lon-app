@@ -1,9 +1,32 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  font-weight: normal;
+  color: silver;
+}
+tbody tr:nth-child(odd) {
+  background-color: #e2e2e2;
+}
+td.fit-width {
+  width: 1px;
+  white-space: nowrap;
+}
+
 div#container {
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr auto;
   grid-template-areas: "list tree";
   gap: 8px;
+}
+div#list {
+  grid-area: list;
+}
+div#tree {
+  grid-area: tree;
 }
 
 /* lt-md */

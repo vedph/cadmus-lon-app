@@ -39,7 +39,7 @@
 
   <!-- note -->
   <div>
-    <mat-form-field>
+    <mat-form-field class="long-text">
       <mat-label>note</mat-label>
       <textarea matInput [formControl]="note"></textarea>
       @if ($any(note).errors?.required && (note.dirty || note.touched)) {

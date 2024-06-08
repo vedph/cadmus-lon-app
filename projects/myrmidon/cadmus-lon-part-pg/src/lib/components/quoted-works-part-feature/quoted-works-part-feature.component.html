@@ -1,1 +1,8 @@
-<p>quoted-works-part-feature works!</p>
+<cadmus-current-item-bar></cadmus-current-item-bar>
+<cadmus-lon-quoted-works-part
+  [identity]="identity"
+  [data]="$any(data)"
+  (dataChange)="save($event)"
+  (editorClose)="close()"
+  (dirtyChange)="onDirtyChange($event)"
+/>
