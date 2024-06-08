@@ -12,7 +12,10 @@ import { EXT_BIBLIOGRAPHY_PART_TYPEID } from '@myrmidon/cadmus-part-biblio-ui';
 
 import { PartEditorKeys } from '@myrmidon/cadmus-core';
 
-import { LETTER_INFO_PART_TYPEID } from '../../projects/myrmidon/cadmus-lon-part-ui/src/public-api';
+import {
+  LETTER_ATTACHMENTS_PART_TYPEID,
+  LETTER_INFO_PART_TYPEID,
+} from '../../projects/myrmidon/cadmus-lon-part-ui/src/public-api';
 
 const GENERAL = 'general';
 const BIBLIO = 'biblio';
@@ -53,6 +56,9 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   },
   // lon
   [LETTER_INFO_PART_TYPEID]: {
+    part: LON,
+  },
+  [LETTER_ATTACHMENTS_PART_TYPEID]: {
     part: LON,
   },
 };

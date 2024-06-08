@@ -182,9 +182,9 @@ export class LetterAttachmentsPartComponent
     this.editAttachment(attachment, -1);
   }
 
-  public editAttachment(entry: LetterAttachment, index: number): void {
+  public editAttachment(attachment: LetterAttachment, index: number): void {
     this._editedIndex = index;
-    this.edited = entry;
+    this.edited = attachment;
   }
 
   public closeAttachment(): void {
@@ -192,12 +192,12 @@ export class LetterAttachmentsPartComponent
     this.edited = undefined;
   }
 
-  public saveAttachment(entry: LetterAttachment): void {
+  public saveAttachment(attachment: LetterAttachment): void {
     const entries = [...this.attachments.value];
     if (this._editedIndex === -1) {
-      entries.push(entry);
+      entries.push(attachment);
     } else {
-      entries.splice(this._editedIndex, 1, entry);
+      entries.splice(this._editedIndex, 1, attachment);
     }
     this.attachments.setValue(entries);
     this.attachments.markAsDirty();

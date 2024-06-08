@@ -33,11 +33,10 @@
               <button
                 type="button"
                 mat-icon-button
-                color="primary"
                 matTooltip="Edit this attachment"
                 (click)="editAttachment(a, i)"
               >
-                <mat-icon>edit</mat-icon>
+                <mat-icon class="mat-primary">edit</mat-icon>
               </button>
               <button
                 type="button"
@@ -60,11 +59,10 @@
               <button
                 type="button"
                 mat-icon-button
-                color="warn"
                 matTooltip="Delete this attachment"
                 (click)="deleteAttachment(i)"
               >
-                <mat-icon>remove_circle</mat-icon>
+                <mat-icon class="mat-warn">remove_circle</mat-icon>
               </button>
             </td>
             <td>{{ a.type | flatLookup : typeEntries : "id" : "value" }}</td>
@@ -74,22 +72,22 @@
         </tbody>
       </table>
 
-      <mat-expansion-panel [expanded]="edited">
+      <mat-expansion-panel [expanded]="edited" [disabled]="!edited">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{ edited!.name || "attachment" }}
+            {{ edited?.name || "attachment" }}
           </mat-panel-title>
-          <cadmus-letter-attachment
-            [attachment]="edited"
-            [typeEntries]="typeEntries"
-            [sizeTagEntries]="sizeTagEntries"
-            [sizeUnitEntries]="sizeUnitEntries"
-            [sizeDimTagEntries]="sizeDimTagEntries"
-            (close)="closeAttachment()"
-            (attachmentCancel)="closeAttachment()"
-            (attachmentChange)="saveAttachment($event)"
-          />
         </mat-expansion-panel-header>
+        <cadmus-letter-attachment
+          [attachment]="edited"
+          [typeEntries]="typeEntries"
+          [sizeTagEntries]="sizeTagEntries"
+          [sizeUnitEntries]="sizeUnitEntries"
+          [sizeDimTagEntries]="sizeDimTagEntries"
+          (close)="closeAttachment()"
+          (attachmentCancel)="closeAttachment()"
+          (attachmentChange)="saveAttachment($event)"
+        />
       </mat-expansion-panel>
     </mat-card-content>
     <mat-card-actions>

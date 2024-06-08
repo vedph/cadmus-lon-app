@@ -1,5 +1,5 @@
 <form [formGroup]="form" (submit)="save()">
-  <div>
+  <div class="form-row">
     <!-- type (bound) -->
     @if (typeEntries?.length) {
     <mat-form-field>
@@ -25,10 +25,8 @@
       }
     </mat-form-field>
     }
-  </div>
 
-  <!-- name -->
-  <div>
+    <!-- name -->
     <mat-form-field>
       <mat-label>name</mat-label>
       <input matInput [formControl]="name" />
@@ -42,7 +40,7 @@
 
   <!-- note -->
   <div>
-    <mat-form-field>
+    <mat-form-field class="long-text">
       <mat-label>note</mat-label>
       <textarea matInput [formControl]="note" rows="3"></textarea>
       @if ($any(note).errors?.maxLength && (note.dirty || note.touched)) {
@@ -70,21 +68,19 @@
   <div class="form-row">
     <button
       type="button"
-      class="mat-warn"
       mat-icon-button
       matTooltip="Discard changes"
       (click)="cancel()"
     >
-      <mat-icon>clear</mat-icon>
+      <mat-icon class="mat-warn">clear</mat-icon>
     </button>
     <button
       type="submit"
-      class="mat-primary"
       mat-icon-button
       matTooltip="Accept changes"
       [disabled]="form.invalid || form.pristine"
     >
-      <mat-icon>check_circle</mat-icon>
+      <mat-icon class="mat-primary">check_circle</mat-icon>
     </button>
   </div>
 </form>
