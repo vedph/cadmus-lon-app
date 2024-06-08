@@ -46,7 +46,7 @@ import { LetterAttachmentComponent } from '../letter-attachment/letter-attachmen
  * physical-size-dim-tags (all optional).
  */
 @Component({
-  selector: 'cadmus-letter-attachments-part',
+  selector: 'cadmus-lon-letter-attachments-part',
   standalone: true,
   imports: [
     CommonModule,

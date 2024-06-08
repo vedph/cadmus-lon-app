@@ -26,7 +26,7 @@ import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { LetterAttachment } from '../../letter-attachments-part';
 
 @Component({
-  selector: 'cadmus-letter-attachment',
+  selector: 'cadmus-lon-letter-attachment',
   standalone: true,
   imports: [
     CommonModule,

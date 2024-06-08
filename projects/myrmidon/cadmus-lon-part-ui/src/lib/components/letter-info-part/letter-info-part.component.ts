@@ -62,7 +62,7 @@ function entryToFlag(entry: ThesaurusEntry): Flag {
  * (all optional).
  */
 @Component({
-  selector: 'cadmus-letter-info-part',
+  selector: 'cadmus-lon-letter-info-part',
   standalone: true,
   imports: [
     CommonModule,
