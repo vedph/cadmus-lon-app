@@ -8,10 +8,12 @@ import { PendingChangesGuard } from '@myrmidon/cadmus-core';
 import {
   LETTER_ATTACHMENTS_PART_TYPEID,
   LETTER_INFO_PART_TYPEID,
+  QUOTED_WORKS_PART_TYPEID,
 } from '@myrmidon/cadmus-lon-part-ui';
 
 import { LetterInfoPartFeatureComponent } from './components/letter-info-part-feature/letter-info-part-feature.component';
 import { LetterAttachmentsPartFeatureComponent } from './components/letter-attachments-part-feature/letter-attachments-part-feature.component';
+import { QuotedWorksPartFeatureComponent } from './components/quoted-works-part-feature/quoted-works-part-feature.component';
 
 export const RouterModuleForChild = RouterModule.forChild([
   {
@@ -26,7 +28,12 @@ export const RouterModuleForChild = RouterModule.forChild([
     component: LetterAttachmentsPartFeatureComponent,
     canDeactivate: [PendingChangesGuard],
   },
-  // ... other parts ...
+  {
+    path: `${QUOTED_WORKS_PART_TYPEID}/:pid`,
+    pathMatch: 'full',
+    component: QuotedWorksPartFeatureComponent,
+    canDeactivate: [PendingChangesGuard],
+  },
 ]);
 
 @NgModule({
@@ -39,6 +46,7 @@ export const RouterModuleForChild = RouterModule.forChild([
     // local
     LetterInfoPartFeatureComponent,
     LetterAttachmentsPartFeatureComponent,
+    QuotedWorksPartFeatureComponent,
   ],
   exports: [LetterInfoPartFeatureComponent],
 })

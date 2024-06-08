@@ -9,7 +9,7 @@ import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { LetterAttachmentsPartComponent } from '@myrmidon/cadmus-lon-part-ui';
 
 @Component({
-  selector: 'cadmus-letter-attachments-part-feature',
+  selector: 'cadmus-lon-letter-attachments-part-feature',
   standalone: true,
   imports: [CadmusUiPgModule, LetterAttachmentsPartComponent],
   templateUrl: './letter-attachments-part-feature.component.html',

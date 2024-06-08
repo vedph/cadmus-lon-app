@@ -6,16 +6,16 @@ import { ItemService, ThesaurusService } from '@myrmidon/cadmus-api';
 import { EditPartFeatureBase, PartEditorService } from '@myrmidon/cadmus-state';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 
-import { LetterInfoPartComponent } from '@myrmidon/cadmus-lon-part-ui';
+import { QuotedWorksPartComponent } from '@myrmidon/cadmus-lon-part-ui';
 
 @Component({
-  selector: 'cadmus-lon-letter-info-part-feature',
+  selector: 'cadmus-lon-quoted-works-part-feature',
   standalone: true,
-  imports: [CadmusUiPgModule, LetterInfoPartComponent],
-  templateUrl: './letter-info-part-feature.component.html',
-  styleUrl: './letter-info-part-feature.component.css',
+  imports: [CadmusUiPgModule, QuotedWorksPartComponent],
+  templateUrl: './quoted-works-part-feature.component.html',
+  styleUrl: './quoted-works-part-feature.component.css',
 })
-export class LetterInfoPartFeatureComponent
+export class QuotedWorksPartFeatureComponent
   extends EditPartFeatureBase
   implements OnInit
 {
@@ -38,13 +38,6 @@ export class LetterInfoPartFeatureComponent
   }
 
   protected override getReqThesauriIds(): string[] {
-    return [
-      'letter-info-archives',
-      'letter-info-languages',
-      'letter-info-features',
-      'physical-size-units',
-      'physical-size-tags',
-      'physical-size-dim-tags',
-    ];
+    return ['quoted-works-ids', 'quoted-works-roles'];
   }
 }

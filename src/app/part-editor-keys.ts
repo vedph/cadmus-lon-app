@@ -15,6 +15,7 @@ import { PartEditorKeys } from '@myrmidon/cadmus-core';
 import {
   LETTER_ATTACHMENTS_PART_TYPEID,
   LETTER_INFO_PART_TYPEID,
+  QUOTED_WORKS_PART_TYPEID,
 } from '../../projects/myrmidon/cadmus-lon-part-ui/src/public-api';
 
 const GENERAL = 'general';
@@ -59,6 +60,9 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
     part: LON,
   },
   [LETTER_ATTACHMENTS_PART_TYPEID]: {
+    part: LON,
+  },
+  [QUOTED_WORKS_PART_TYPEID]: {
     part: LON,
   },
 };
