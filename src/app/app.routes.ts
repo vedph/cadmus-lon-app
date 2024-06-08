@@ -86,6 +86,15 @@ export const routes: Routes = [
       ),
     canActivate: [AuthJwtGuardService],
   },
+  // cadmus - lon parts
+  {
+    path: 'items/:iid/lon',
+    loadChildren: () =>
+      import('@myrmidon/cadmus-lon-part-pg').then(
+        (module) => module.CadmusLonPartPgModule
+      ),
+    canActivate: [AuthJwtGuardService],
+  },
   // cadmus - graph
   {
     path: 'graph',

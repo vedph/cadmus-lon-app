@@ -148,8 +148,8 @@ export class LetterInfoPartComponent
   constructor(authService: AuthJwtService, formBuilder: FormBuilder) {
     super(authService, formBuilder);
     // flags
-    this.featFlags$ = this._flagAdapter.selectFlags('features');
     this.langFlags$ = this._flagAdapter.selectFlags('languages');
+    this.featFlags$ = this._flagAdapter.selectFlags('features');
     // form
     this.archive = formBuilder.control<string>('', {
       nonNullable: true,
@@ -251,6 +251,13 @@ export class LetterInfoPartComponent
     }
 
     return part;
+  }
+
+  public onLangFlagsChange(flags: Flag[]): void {
+    this._flagAdapter.setSlotFlags('languages', flags, true);
+    this.languages.setValue(flags);
+    this.languages.markAsDirty();
+    this.language.updateValueAndValidity();
   }
 
   public onFeatFlagsChange(flags: Flag[]): void {
