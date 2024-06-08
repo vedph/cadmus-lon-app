@@ -1,0 +1,103 @@
+<form [formGroup]="form" (submit)="save()">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>picture_in_picture</mat-icon>
+      </div>
+      <mat-card-title>Letter Attachments Part</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <button
+          type="button"
+          mat-flat-button
+          color="primary"
+          (click)="addAttachment()"
+        >
+          <mat-icon>add_circle</mat-icon> attachment
+        </button>
+      </div>
+      <table *ngIf="attachments.value?.length">
+        <thead>
+          <tr>
+            <th></th>
+            <th>type</th>
+            <th>name</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (a of attachments.value; track a; let i = $index; let first =
+          $first; let last = $last) {
+          <tr>
+            <td class="fit-width">
+              <button
+                type="button"
+                mat-icon-button
+                color="primary"
+                matTooltip="Edit this attachment"
+                (click)="editAttachment(a, i)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                type="button"
+                mat-icon-button
+                matTooltip="Move this attachment up"
+                [disabled]="first"
+                (click)="moveAttachmentUp(i)"
+              >
+                <mat-icon>arrow_upward</mat-icon>
+              </button>
+              <button
+                type="button"
+                mat-icon-button
+                matTooltip="Move this attachment down"
+                [disabled]="last"
+                (click)="moveAttachmentDown(i)"
+              >
+                <mat-icon>arrow_downward</mat-icon>
+              </button>
+              <button
+                type="button"
+                mat-icon-button
+                color="warn"
+                matTooltip="Delete this attachment"
+                (click)="deleteAttachment(i)"
+              >
+                <mat-icon>remove_circle</mat-icon>
+              </button>
+            </td>
+            <td>{{ a.type | flatLookup : typeEntries : "id" : "value" }}</td>
+            <td>{{ a.name }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+
+      <mat-expansion-panel [expanded]="edited">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ edited!.name || "attachment" }}
+          </mat-panel-title>
+          <cadmus-letter-attachment
+            [attachment]="edited"
+            [typeEntries]="typeEntries"
+            [sizeTagEntries]="sizeTagEntries"
+            [sizeUnitEntries]="sizeUnitEntries"
+            [sizeDimTagEntries]="sizeDimTagEntries"
+            (close)="closeAttachment()"
+            (attachmentCancel)="closeAttachment()"
+            (attachmentChange)="saveAttachment($event)"
+          />
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-card-content>
+    <mat-card-actions>
+      <cadmus-close-save-buttons
+        [form]="form"
+        [noSave]="userLevel < 2"
+        (closeRequest)="close()"
+      ></cadmus-close-save-buttons>
+    </mat-card-actions>
+  </mat-card>
+</form>
