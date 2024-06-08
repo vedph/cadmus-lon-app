@@ -83,9 +83,37 @@
           </mat-form-field>
           }
         </div>
+        <!-- languages -->
+        <div>
+          <cadmus-ui-flags-picker
+            [flags]="langFlags$ | async"
+            (flagsChange)="onFeatFlagsChange($event)"
+          ></cadmus-ui-flags-picker>
+        </div>
       </fieldset>
 
-      TODO
+      <!-- features -->
+      <fieldset>
+        <legend>features</legend>
+        <cadmus-ui-flags-picker
+          [flags]="featFlags$ | async"
+          (flagsChange)="onFeatFlagsChange($event)"
+        ></cadmus-ui-flags-picker>
+      </fieldset>
+
+      <!-- size -->
+      <mat-checkbox [formControl]="hasSize">size</mat-checkbox>
+      @if (hasSize.value) {
+      <div>
+        <cadmus-mat-physical-size
+          [tagEntries]="sizeTagEntries"
+          [unitEntries]="sizeUnitEntries"
+          [dimTagEntries]="sizeDimTagEntries"
+          [size]="size.value"
+          (sizeChange)="onSizeChange($event)"
+        />
+      </div>
+      }
     </mat-card-content>
     <mat-card-actions>
       <cadmus-close-save-buttons

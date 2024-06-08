@@ -3,41 +3,32 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { CadmusCoreModule, PendingChangesGuard } from '@myrmidon/cadmus-core';
-import { CadmusStateModule } from '@myrmidon/cadmus-state';
-import { CadmusUiModule } from '@myrmidon/cadmus-ui';
-import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
-import { PhysicalSizeComponent } from '@myrmidon/cadmus-mat-physical-size';
+import { PendingChangesGuard } from '@myrmidon/cadmus-core';
+
+import { LETTER_INFO_PART_TYPEID } from '@myrmidon/cadmus-lon-part-ui';
+
+import { LetterInfoPartFeatureComponent } from './components/letter-info-part-feature/letter-info-part-feature.component';
 
 export const RouterModuleForChild = RouterModule.forChild([
   {
     path: `${LETTER_INFO_PART_TYPEID}/:pid`,
     pathMatch: 'full',
-    component: LetterInfoPartComponent,
+    component: LetterInfoPartFeatureComponent,
     canDeactivate: [PendingChangesGuard],
   },
   // ... other parts ...
 ]);
 
 @NgModule({
-  declarations: [
-    // ...
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModuleForChild,
-    // material
-    // ...
-    // cadmus
-    CadmusCoreModule,
-    CadmusStateModule,
-    CadmusUiModule,
-    CadmusUiPgModule,
-    CadmusUiPgModule,
-    PhysicalSizeComponent,
+    // local
+    LetterInfoPartFeatureComponent,
   ],
-  exports: [],
+  exports: [LetterInfoPartFeatureComponent],
 })
 export class CadmusLonPartPgModule {}

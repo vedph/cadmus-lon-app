@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build-ui": "ng build @myrmidon/cadmus-lon-part-ui"
   },
   "private": true,
   "dependencies": {

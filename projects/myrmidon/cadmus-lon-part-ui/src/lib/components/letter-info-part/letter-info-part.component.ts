@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 // material
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -23,7 +24,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 
 // bricks
-import { Flag, FlagsPickerAdapter } from '@myrmidon/cadmus-ui-flags-picker';
+import {
+  Flag,
+  FlagsPickerAdapter,
+  FlagsPickerComponent,
+} from '@myrmidon/cadmus-ui-flags-picker';
 
 // cadmus
 import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
@@ -52,7 +57,8 @@ function entryToFlag(entry: ThesaurusEntry): Flag {
 
 /**
  * Letter info part editor component.
- * Thesauri: letter-info-archives, letter-info-languages, letter-info-features
+ * Thesauri: letter-info-archives, letter-info-languages, letter-info-features,
+ * physical-size-units, physical-size-tags, physical-size-dim-tags
  * (all optional).
  */
 @Component({
@@ -63,6 +69,7 @@ function entryToFlag(entry: ThesaurusEntry): Flag {
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
+    MatCheckboxModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -70,6 +77,7 @@ function entryToFlag(entry: ThesaurusEntry): Flag {
     MatTooltipModule,
     // bricks
     PhysicalSizeComponent,
+    FlagsPickerComponent,
     // cadmus
     CadmusUiModule,
   ],
@@ -85,20 +93,36 @@ export class LetterInfoPartComponent
   private _featureEntries?: ThesaurusEntry[];
   public featFlags$: Observable<Flag[]>;
 
+  private _langEntries?: ThesaurusEntry[];
+  public langFlags$: Observable<Flag[]>;
+
   // controls
   public archive: FormControl<string>;
   public shelfmark: FormControl<string>;
   public language: FormControl<string>;
-  public languages: FormControl<string[]>;
+  public languages: FormControl<Flag[]>;
   public features: FormControl<Flag[]>;
   public hasSize: FormControl<boolean>;
   public size: FormControl<PhysicalSize | null>;
 
-  // thesauri entries
   // letter-info-archives
   public archiveEntries?: ThesaurusEntry[];
+
   // letter-info-languages
-  public languageEntries?: ThesaurusEntry[];
+  public get languageEntries(): ThesaurusEntry[] | undefined {
+    return this._langEntries;
+  }
+  public set languageEntries(value: ThesaurusEntry[] | undefined) {
+    if (this._langEntries === value) {
+      return;
+    }
+    this._langEntries = value || [];
+    this._flagAdapter.setSlotFlags(
+      'languages',
+      this._langEntries.map(entryToFlag)
+    );
+  }
+
   // letter-info-features
   public get featureEntries(): ThesaurusEntry[] | undefined {
     return this._featureEntries;
@@ -114,10 +138,18 @@ export class LetterInfoPartComponent
     );
   }
 
+  // physical-size-units
+  public sizeUnitEntries?: ThesaurusEntry[];
+  // physical-size-tags
+  public sizeTagEntries?: ThesaurusEntry[];
+  // physical-size-dim-tags
+  public sizeDimTagEntries?: ThesaurusEntry[];
+
   constructor(authService: AuthJwtService, formBuilder: FormBuilder) {
     super(authService, formBuilder);
     // flags
     this.featFlags$ = this._flagAdapter.selectFlags('features');
+    this.langFlags$ = this._flagAdapter.selectFlags('languages');
     // form
     this.archive = formBuilder.control<string>('', {
       nonNullable: true,
@@ -131,7 +163,7 @@ export class LetterInfoPartComponent
       nonNullable: true,
       validators: [Validators.required, Validators.maxLength(50)],
     });
-    this.languages = formBuilder.control<string[]>([], { nonNullable: true });
+    this.languages = formBuilder.control<Flag[]>([], { nonNullable: true });
     this.features = formBuilder.control<Flag[]>([], { nonNullable: true });
     this.hasSize = formBuilder.control<boolean>(false, { nonNullable: true });
     this.size = formBuilder.control<PhysicalSize | null>(null);
@@ -184,7 +216,9 @@ export class LetterInfoPartComponent
     this.archive.setValue(part.archive || '');
     this.shelfmark.setValue(part.shelfmark || '');
     this.language.setValue(part.language || '');
-    this.languages.setValue(part.languages || []);
+    this.languages.setValue(
+      this._flagAdapter.setSlotChecks('languages', part.languages || [])
+    );
     this.features.setValue(
       this._flagAdapter.setSlotChecks('features', part.features || [])
     );
@@ -208,9 +242,7 @@ export class LetterInfoPartComponent
     part.archive = this.archive.value?.trim() || '';
     part.shelfmark = this.shelfmark.value?.trim() || '';
     part.language = this.language.value?.trim() || '';
-    part.languages = this.languages.value?.length
-      ? this.languages.value
-      : undefined;
+    part.languages = this._flagAdapter.getOptionalCheckedFlagIds('languages');
     part.features = this._flagAdapter.getOptionalCheckedFlagIds('features');
     if (this.hasSize.value && this.size.value) {
       part.size = this.size.value;
@@ -221,10 +253,16 @@ export class LetterInfoPartComponent
     return part;
   }
 
-  public onStateFlagsChange(flags: Flag[]): void {
+  public onFeatFlagsChange(flags: Flag[]): void {
     this._flagAdapter.setSlotFlags('features', flags, true);
     this.features.setValue(flags);
     this.features.markAsDirty();
     this.features.updateValueAndValidity();
+  }
+
+  public onSizeChange(size: PhysicalSize | null): void {
+    this.size.setValue(size);
+    this.size.markAsDirty();
+    this.size.updateValueAndValidity();
   }
 }
