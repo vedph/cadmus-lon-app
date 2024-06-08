@@ -8,6 +8,22 @@
   object-fit: fill;
   object-position: 0 0;
 }
+#title h2 {
+  margin: 16px 0;
+  text-align: center;
+  color: #4991d8;
+}
 article {
-  margin: 8px;
+  margin: 16px;
+  column-width: 800px;
+  column-gap: 24px;
+}
+#logos {
+  grid-area: logos;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  gap: 40px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
