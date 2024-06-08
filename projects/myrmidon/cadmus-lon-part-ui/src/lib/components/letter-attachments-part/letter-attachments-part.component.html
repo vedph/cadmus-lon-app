@@ -17,7 +17,8 @@
           <mat-icon>add_circle</mat-icon> attachment
         </button>
       </div>
-      <table *ngIf="attachments.value?.length">
+      @if (attachments.value.length) {
+      <table>
         <thead>
           <tr>
             <th></th>
@@ -71,6 +72,7 @@
           }
         </tbody>
       </table>
+      }
 
       <mat-expansion-panel [expanded]="edited" [disabled]="!edited">
         <mat-expansion-panel-header>

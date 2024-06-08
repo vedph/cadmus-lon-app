@@ -1,1 +1,106 @@
-<p>quoted-works-part works!</p>
+<form [formGroup]="form" (submit)="save()">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>picture_in_picture</mat-icon>
+      </div>
+      <mat-card-title>Quoted Works Part</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="container">
+        <!-- list -->
+        <div id="list">
+          @if (works.value.length) {
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>ID</th>
+                <th>role</th>
+                <th>location</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (work of works.value; track work.id; let i = $index; let
+              first = $first; let last = $last) {
+              <tr>
+                <td class="fit-width">
+                  <button
+                    type="button"
+                    mat-icon-button
+                    color="primary"
+                    matTooltip="Edit this work"
+                    (click)="editWork(work, i)"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    matTooltip="Move this work up"
+                    [disabled]="first"
+                    (click)="moveWorkUp(i)"
+                  >
+                    <mat-icon>arrow_upward</mat-icon>
+                  </button>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    matTooltip="Move this work down"
+                    [disabled]="last"
+                    (click)="moveWorkDown(i)"
+                  >
+                    <mat-icon>arrow_downward</mat-icon>
+                  </button>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    color="warn"
+                    matTooltip="Delete this work"
+                    (click)="deleteWork(i)"
+                  >
+                    <mat-icon>remove_circle</mat-icon>
+                  </button>
+                </td>
+                <td>{{ work.id | flatLookup : idEntries : "id" : "value" }}</td>
+                <td>
+                  {{ work.role | flatLookup : roleEntries : "id" : "value" }}
+                </td>
+                <td>{{ work.location }}</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+          }
+          <!-- work editor -->
+          <mat-expansion-panel [expanded]="edited" [disabled]="!edited">
+            <mat-expansion-panel-header>
+              {{ edited?.id || "work" }}
+            </mat-expansion-panel-header>
+            <cadmus-lon-quoted-work
+              [roleEntries]="roleEntries"
+              [work]="edited"
+              (workChange)="saveWork($event)"
+              (workCancel)="closeWork()"
+            />
+          </mat-expansion-panel>
+        </div>
+
+        <!-- tree -->
+        <div id="tree">
+          <cadmus-thesaurus-tree
+            [entries]="idEntries"
+            (entryChange)="onTreeEntryChange($event)"
+          />
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <cadmus-close-save-buttons
+        [form]="form"
+        [noSave]="userLevel < 2"
+        (closeRequest)="close()"
+      ></cadmus-close-save-buttons>
+    </mat-card-actions>
+  </mat-card>
+</form>

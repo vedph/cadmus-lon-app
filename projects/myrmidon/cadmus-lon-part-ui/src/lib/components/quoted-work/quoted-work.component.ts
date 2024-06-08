@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { QuotedWork } from '../../quoted-works-part';
+import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 
 @Component({
   selector: 'cadmus-lon-quoted-work',
@@ -47,6 +48,10 @@ export class QuotedWorkComponent {
       this.updateForm(value);
     }
   }
+
+  // quoted-works-roles
+  @Input()
+  public roleEntries?: ThesaurusEntry[];
 
   @Output()
   public readonly workChange: EventEmitter<QuotedWork> =
