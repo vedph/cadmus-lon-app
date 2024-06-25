@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   # MongoDB
   cadmus-lon-mongo:
@@ -69,7 +67,7 @@ services:
 
   # Cadmus lon App
   cadmus-app:
-    image: vedph2020/cadmus-lon-app:0.0.2
+    image: vedph2020/cadmus-lon-app:0.0.3
     container_name: cadmus-lon-app
     ports:
       - 4200:80

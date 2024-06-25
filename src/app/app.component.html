@@ -44,6 +44,12 @@
       </mat-menu>
     </ng-container>
 
+    <!-- biblio menu -->
+    @if ( user && (user.roles.includes('admin') ||
+    user.roles.includes('editor')) ) {
+    <button type="button" mat-button routerLink="/biblio">Bibliography</button>
+    }
+
     <span class="tb-fill-remaining-space"></span>
 
     <!-- user -->
