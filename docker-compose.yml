@@ -47,10 +47,10 @@ services:
 
   # Cadmus lon API
   cadmus-lon-api:
-    image: vedph2020/cadmus-lon-api:0.0.1
+    image: vedph2020/cadmus-lon-api:0.0.2
     container_name: cadmus-lon-api
     ports:
-      - 5003:80
+      - 5003:8080
     depends_on:
       - cadmus-lon-mongo
       - cadmus-lon-pgsql
@@ -69,7 +69,7 @@ services:
 
   # Cadmus lon App
   cadmus-app:
-    image: vedph2020/cadmus-lon-app:0.0.1
+    image: vedph2020/cadmus-lon-app:0.0.2
     container_name: cadmus-lon-app
     ports:
       - 4200:80
