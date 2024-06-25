@@ -21,9 +21,12 @@ article {
 #logos {
   grid-area: logos;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
   gap: 40px;
   width: 100%;
   justify-content: center;
   align-items: center;
+}
+#logos img {
+  width: 200px;
 }

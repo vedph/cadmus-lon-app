@@ -21,4 +21,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - 2024-06-25:
   - upgraded Angular.
   - updated packages.
+  - added biblio provider to lookups.
 - 2024-06-17: updated packages.

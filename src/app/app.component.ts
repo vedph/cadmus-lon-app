@@ -54,6 +54,7 @@ import { CadmusThesaurusEditorModule } from '@myrmidon/cadmus-thesaurus-editor';
 import { CadmusThesaurusListModule } from '@myrmidon/cadmus-thesaurus-list';
 import { CadmusThesaurusUiModule } from '@myrmidon/cadmus-thesaurus-ui';
 import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
+import { WorkRefLookupService } from '@myrmidon/cadmus-biblio-ui';
 
 @Component({
   selector: 'app-root',
@@ -108,6 +109,7 @@ export class AppComponent implements OnInit, OnDestroy {
     env: EnvService,
     // lookup
     storage: RamStorageService,
+    biblio: WorkRefLookupService,
     viaf: ViafRefLookupService,
     dbpedia: DbpediaRefLookupService,
     geonames: GeoNamesRefLookupService
@@ -117,6 +119,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // configure external lookup for asserted composite IDs
     storage.store(ASSERTED_COMPOSITE_ID_CONFIGS_KEY, [
+      {
+        name: 'biblio',
+        iconUrl: 'img/biblio128.png',
+        description: 'Itinera bibliography',
+        label: 'ID',
+        service: biblio,
+        itemIdGetter: (item: any) => item?.id,
+        itemLabelGetter: (item: any) => item?.key || item?.title,
+      },
       {
         name: 'VIAF',
         iconUrl: '/img/viaf128.png',
