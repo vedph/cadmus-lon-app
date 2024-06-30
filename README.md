@@ -18,6 +18,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2024-06-30:
+  - updated Angular and packages.
+  - added WHG lookup.
+
 ### 0.0.3
 
 - 2024-06-25:

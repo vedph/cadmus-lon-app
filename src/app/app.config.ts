@@ -29,6 +29,7 @@ import {
 } from '@myrmidon/cadmus-text-ed-md';
 import { TxtEmojiCtePlugin } from '@myrmidon/cadmus-text-ed-txt';
 import { GEONAMES_USERNAME_TOKEN } from '@myrmidon/cadmus-refs-geonames-lookup';
+import { WHG_USERNAME_TOKEN } from '@myrmidon/cadmus-refs-whg-lookup';
 import { PROXY_INTERCEPTOR_OPTIONS } from '@myrmidon/cadmus-refs-lookup';
 
 // local
@@ -118,7 +119,11 @@ export const appConfig: ApplicationConfig = {
       provide: GEONAMES_USERNAME_TOKEN,
       useValue: 'myrmex',
     },
-    // proxy
+    {
+      provide: WHG_USERNAME_TOKEN,
+      useValue: 'myrmex'
+    },
+        // proxy
     {
       provide: PROXY_INTERCEPTOR_OPTIONS,
       useValue: {
