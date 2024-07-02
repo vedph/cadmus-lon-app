@@ -157,7 +157,7 @@ export class LetterInfoPartComponent
     });
     this.shelfmark = formBuilder.control<string>('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.maxLength(100)],
+      validators: Validators.maxLength(100),
     });
     this.language = formBuilder.control<string>('', {
       nonNullable: true,

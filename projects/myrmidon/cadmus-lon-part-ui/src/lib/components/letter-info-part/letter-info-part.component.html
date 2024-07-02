@@ -41,10 +41,7 @@
         <mat-form-field>
           <mat-label>shelfmark</mat-label>
           <input matInput [formControl]="shelfmark" />
-          @if ($any(shelfmark).errors?.required && (shelfmark.dirty ||
-          shelfmark.touched)) {
-          <mat-error>shelfmark required</mat-error>
-          } @if ($any(shelfmark).errors?.maxLength && (shelfmark.dirty ||
+          @if ($any(shelfmark).errors?.maxLength && (shelfmark.dirty ||
           shelfmark.touched)) {
           <mat-error>shelfmark too long</mat-error>
           }
