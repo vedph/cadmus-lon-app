@@ -18,6 +18,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2024-07-19: added lookup definition.
+
 ### 0.0.4
 
 - 2024-07-17: updated Angular and packages.
