@@ -14,9 +14,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. `npm run build-lib`;
 2. update version in `env.js` (and `docker-compose.yml`) and `ng build --configuration production`;
-3. `docker build . -t vedph2020/cadmus-lon-app:0.0.7 -t vedph2020/cadmus-lon-app:latest` (replace with the current version).
+3. `docker build . -t vedph2020/cadmus-lon-app:0.0.8 -t vedph2020/cadmus-lon-app:latest` (replace with the current version).
 
 ## History
+
+### 0.0.8
+
+- 2024-09-28: updated Angular and packages (new features in item editor).
 
 ### 0.0.7
 

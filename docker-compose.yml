@@ -45,7 +45,7 @@ services:
 
   # Cadmus lon API
   cadmus-lon-api:
-    image: vedph2020/cadmus-lon-api:0.0.6
+    image: vedph2020/cadmus-lon-api:0.0.7
     container_name: cadmus-lon-api
     ports:
       - 5003:8080
@@ -67,7 +67,7 @@ services:
 
   # Cadmus lon App
   cadmus-app:
-    image: vedph2020/cadmus-lon-app:0.0.7
+    image: vedph2020/cadmus-lon-app:0.0.8
     container_name: cadmus-lon-app
     ports:
       - 4200:80
