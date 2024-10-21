@@ -18,6 +18,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2024-10-21: updated Angular and packages.
+
 ### 0.0.9
 
 - 2024-09-29: updated packages (flags editor fix).
