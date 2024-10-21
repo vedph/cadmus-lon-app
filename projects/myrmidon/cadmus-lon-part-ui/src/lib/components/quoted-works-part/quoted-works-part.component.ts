@@ -153,16 +153,7 @@ export class QuotedWorksPartComponent
   }
 
   public onTreeEntryChange(entry: ThesaurusEntry): void {
-    // find entry.id among works
-    const index = this.works.value.findIndex((e) => e.id === entry.id);
-    // if found, edit that work
-    if (index > -1) {
-      this.editWork(this.works.value[index], index);
-    }
-    // else add a new one with entry.id
-    else {
-      this.addWork(entry.id);
-    }
+    this.addWork(entry.id);
   }
 
   public editWork(work: QuotedWork, index: number): void {
@@ -183,6 +174,15 @@ export class QuotedWorksPartComponent
 
   public saveWork(work: QuotedWork): void {
     const entries = [...this.works.value];
+    // nope if same entry is already present
+    if (
+      entries.some(
+        (e) => e.id === work.id && e.role === work.role && e.note === work.note
+      )
+    ) {
+      return;
+    }
+
     if (this._editedIndex === -1) {
       entries.push(work);
     } else {

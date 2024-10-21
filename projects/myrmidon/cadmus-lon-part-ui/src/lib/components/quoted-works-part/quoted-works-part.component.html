@@ -28,7 +28,7 @@
                   <button
                     type="button"
                     mat-icon-button
-                    color="primary"
+                    class="mat-primary"
                     matTooltip="Edit this work"
                     (click)="editWork(work, i)"
                   >
@@ -55,11 +55,11 @@
                   <button
                     type="button"
                     mat-icon-button
-                    color="warn"
+                    class="mat-warn"
                     matTooltip="Delete this work"
                     (click)="deleteWork(i)"
                   >
-                    <mat-icon class="mat-warn">remove_circle</mat-icon>
+                    <mat-icon>remove_circle</mat-icon>
                   </button>
                 </td>
                 <td>{{ work.id | flatLookup : idEntries : "id" : "value" }}</td>
