@@ -9,7 +9,6 @@ import { CadmusBiblioUiModule } from '@myrmidon/cadmus-biblio-ui';
 
 @Component({
   selector: 'cadmus-biblio-page',
-  standalone: true,
   imports: [CommonModule, MatCardModule, CadmusBiblioUiModule],
   templateUrl: './biblio-page.component.html',
   styleUrls: ['./biblio-page.component.scss'],

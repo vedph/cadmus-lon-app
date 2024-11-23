@@ -10,7 +10,6 @@ import { LetterInfoPartComponent } from '@myrmidon/cadmus-lon-part-ui';
 
 @Component({
   selector: 'cadmus-lon-letter-info-part-feature',
-  standalone: true,
   imports: [CadmusUiPgModule, LetterInfoPartComponent],
   templateUrl: './letter-info-part-feature.component.html',
   styleUrl: './letter-info-part-feature.component.css',

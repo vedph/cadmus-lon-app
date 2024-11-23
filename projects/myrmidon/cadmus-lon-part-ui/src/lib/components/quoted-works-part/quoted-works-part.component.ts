@@ -41,7 +41,6 @@ import { QuotedWorkComponent } from '../quoted-work/quoted-work.component';
  */
 @Component({
   selector: 'cadmus-lon-quoted-works-part',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,

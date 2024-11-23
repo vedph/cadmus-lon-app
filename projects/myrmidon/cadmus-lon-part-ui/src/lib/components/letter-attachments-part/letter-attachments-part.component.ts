@@ -47,7 +47,6 @@ import { LetterAttachmentComponent } from '../letter-attachment/letter-attachmen
  */
 @Component({
   selector: 'cadmus-lon-letter-attachments-part',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -65,7 +64,7 @@ import { LetterAttachmentComponent } from '../letter-attachment/letter-attachmen
     NgToolsModule,
     // cadmus
     CadmusUiModule,
-    LetterAttachmentComponent
+    LetterAttachmentComponent,
   ],
   templateUrl: './letter-attachments-part.component.html',
   styleUrl: './letter-attachments-part.component.css',

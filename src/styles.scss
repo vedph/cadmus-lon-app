@@ -1,17 +1,13 @@
 @use "@angular/material" as mat;
 @import "preview-styles.css";
 
-@include mat.core();
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-$light-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-    ),
-  )
-);
-
+// https://stackoverflow.com/questions/78535414/mattoolbar-color-doesnt-work-on-angular-material-v18-red-rose
+$theme: mat.define-theme();
 html {
-  @include mat.all-component-themes($light-theme);
+  @include mat.all-component-themes($theme);
+  // This line allows you to use color="..." for your toolbar.
+  @include mat.color-variants-backwards-compatibility($theme);
 }

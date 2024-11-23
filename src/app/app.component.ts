@@ -17,21 +17,11 @@ import {
 import {
   User,
   AuthJwtService,
-  GravatarService,
   AuthJwtLoginModule,
 } from '@myrmidon/auth-jwt-login';
 
 // bricks
-import {
-  ASSERTED_COMPOSITE_ID_CONFIGS_KEY,
-  AssertedCompositeIdsComponent,
-} from '@myrmidon/cadmus-refs-asserted-ids';
-import { DocReferencesComponent } from '@myrmidon/cadmus-refs-doc-references';
-import {
-  HistoricalDateComponent,
-  HistoricalDatePipe,
-} from '@myrmidon/cadmus-refs-historical-date';
-import { FlagsPickerComponent } from '@myrmidon/cadmus-ui-flags-picker';
+import { ASSERTED_COMPOSITE_ID_CONFIGS_KEY } from '@myrmidon/cadmus-refs-asserted-ids';
 import { ViafRefLookupService } from '@myrmidon/cadmus-refs-viaf-lookup';
 import { DbpediaRefLookupService } from '@myrmidon/cadmus-refs-dbpedia-lookup';
 import { GeoNamesRefLookupService } from '@myrmidon/cadmus-refs-geonames-lookup';
@@ -63,7 +53,6 @@ import {
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [
     CommonModule,
     RouterModule,
@@ -74,11 +63,6 @@ import {
     MatToolbarModule,
     AuthJwtLoginModule,
     // Cadmus
-    DocReferencesComponent,
-    HistoricalDateComponent,
-    HistoricalDatePipe,
-    AssertedCompositeIdsComponent,
-    FlagsPickerComponent,
     CadmusCoreModule,
     CadmusProfileCoreModule,
     CadmusStateModule,
@@ -109,7 +93,6 @@ export class AppComponent implements OnInit, OnDestroy {
     @Inject('itemBrowserKeys')
     private _itemBrowserKeys: { [key: string]: string },
     private _authService: AuthJwtService,
-    private _gravatarService: GravatarService,
     private _appRepository: AppRepository,
     private _router: Router,
     env: EnvService,
@@ -197,7 +180,7 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this._subs.forEach((sub) => {
       sub.unsubscribe();
     });

@@ -10,7 +10,6 @@ import { QuotedWorksPartComponent } from '@myrmidon/cadmus-lon-part-ui';
 
 @Component({
   selector: 'cadmus-lon-quoted-works-part-feature',
-  standalone: true,
   imports: [CadmusUiPgModule, QuotedWorksPartComponent],
   templateUrl: './quoted-works-part-feature.component.html',
   styleUrl: './quoted-works-part-feature.component.css',

@@ -27,7 +27,6 @@ import { LetterAttachment } from '../../letter-attachments-part';
 
 @Component({
   selector: 'cadmus-lon-letter-attachment',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,

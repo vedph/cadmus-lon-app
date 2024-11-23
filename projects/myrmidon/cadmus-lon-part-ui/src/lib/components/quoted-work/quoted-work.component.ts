@@ -21,7 +21,6 @@ import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 
 @Component({
   selector: 'cadmus-lon-quoted-work',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -30,7 +29,7 @@ import { ThesaurusEntry } from '@myrmidon/cadmus-core';
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   templateUrl: './quoted-work.component.html',
   styleUrl: './quoted-work.component.css',

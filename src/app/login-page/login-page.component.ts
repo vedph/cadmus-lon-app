@@ -18,7 +18,6 @@ import {
 
 @Component({
   selector: 'app-login-page',
-  standalone: true,
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
   imports: [

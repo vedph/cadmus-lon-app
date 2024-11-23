@@ -15,7 +15,6 @@ import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
 
 @Component({
   selector: 'app-register-user-page',
-  standalone: true,
   templateUrl: './register-user-page.component.html',
   styleUrls: ['./register-user-page.component.css'],
   imports: [
