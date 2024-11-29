@@ -18,6 +18,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2024-11-29: removed M2 styles from `angular.json` and refactored `styles.scss` to use different themes allowing color variants. Since Angular 18 the `color` directive (which automatically changed the target component's theme) has been removed, and you could use compatibility mixins; but these have side effects. In the approach used here, we just create different themes for color variants. In M2 Cadmus we use class `mat-primary` for emphasized components and `mat-warn` for warn/error components. In M3 I have a default theme, an error theme corresponding to `mat-warn`, and an accent theme corresponding to `mat-primary` (and `mat-accent`). See also [my SO post about M3 theming](https://stackoverflow.com/questions/79230742/proper-angular-material-v3-theming).
+
 ### 1.0.0
 
 - 2024-11-23: ⚠️ upgraded to Angular 19.
