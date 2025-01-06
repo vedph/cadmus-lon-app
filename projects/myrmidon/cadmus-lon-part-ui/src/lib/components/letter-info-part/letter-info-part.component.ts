@@ -39,7 +39,7 @@ import {
 import {
   ModelEditorComponentBase,
   EditedObject,
-  CadmusUiModule,
+  CloseSaveButtonsComponent,
 } from '@myrmidon/cadmus-ui';
 
 // local
@@ -78,7 +78,7 @@ function entryToFlag(entry: ThesaurusEntry): Flag {
     PhysicalSizeComponent,
     FlagsPickerComponent,
     // cadmus
-    CadmusUiModule,
+    CloseSaveButtonsComponent,
   ],
   templateUrl: './letter-info-part.component.html',
   styleUrl: './letter-info-part.component.css',

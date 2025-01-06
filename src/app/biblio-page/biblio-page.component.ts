@@ -5,11 +5,11 @@ import { ThesaurusService } from '@myrmidon/cadmus-api';
 import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { CadmusBiblioUiModule } from '@myrmidon/cadmus-biblio-ui';
+import { WorkListComponent } from '@myrmidon/cadmus-biblio-ui';
 
 @Component({
   selector: 'cadmus-biblio-page',
-  imports: [CommonModule, MatCardModule, CadmusBiblioUiModule],
+  imports: [CommonModule, MatCardModule, WorkListComponent],
   templateUrl: './biblio-page.component.html',
   styleUrls: ['./biblio-page.component.scss'],
 })

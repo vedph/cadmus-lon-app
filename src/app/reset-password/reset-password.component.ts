@@ -17,13 +17,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import {
-  AuthJwtAccountService,
-  AuthJwtAdminModule,
-} from '@myrmidon/auth-jwt-admin';
+import { AuthJwtAccountService } from '@myrmidon/auth-jwt-admin';
 
 @Component({
   selector: 'cadmus-reset-password',
+  standalone: true,
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css'],
   imports: [
@@ -36,7 +34,6 @@ import {
     MatInputModule,
     MatProgressBarModule,
     MatTooltipModule,
-    AuthJwtAdminModule,
   ],
 })
 export class ResetPasswordComponent {

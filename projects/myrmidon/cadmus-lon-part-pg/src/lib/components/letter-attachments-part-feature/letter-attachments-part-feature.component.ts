@@ -4,13 +4,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ItemService, ThesaurusService } from '@myrmidon/cadmus-api';
 import { EditPartFeatureBase, PartEditorService } from '@myrmidon/cadmus-state';
-import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
+import { CurrentItemBarComponent } from '@myrmidon/cadmus-ui-pg';
 
 import { LetterAttachmentsPartComponent } from '@myrmidon/cadmus-lon-part-ui';
 
 @Component({
   selector: 'cadmus-lon-letter-attachments-part-feature',
-  imports: [CadmusUiPgModule, LetterAttachmentsPartComponent],
+  imports: [CurrentItemBarComponent, LetterAttachmentsPartComponent],
   templateUrl: './letter-attachments-part-feature.component.html',
   styleUrl: './letter-attachments-part-feature.component.css',
 })

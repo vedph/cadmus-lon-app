@@ -58,8 +58,8 @@
         [tagEntries]="sizeTagEntries"
         [unitEntries]="sizeUnitEntries"
         [dimTagEntries]="sizeDimTagEntries"
-        [size]="size.value"
-        (sizeChange)="onSizeChange($event)"
+        [size]="size.value || undefined"
+        (sizeChange)="onSizeChange($event!)"
       />
     </div>
     }

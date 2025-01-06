@@ -21,13 +21,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 // myrmidon
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
-import { DialogService } from '@myrmidon/ng-mat-tools';
-import { NgToolsModule, NgToolsValidators } from '@myrmidon/ng-tools';
+import { DialogService } from '@myrmidon/ngx-mat-tools';
+import { FlatLookupPipe, NgxToolsValidators } from '@myrmidon/ngx-tools';
 
 // cadmus
 import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
 import {
-  CadmusUiModule,
+  CloseSaveButtonsComponent,
   EditedObject,
   ModelEditorComponentBase,
 } from '@myrmidon/cadmus-ui';
@@ -60,11 +60,10 @@ import { LetterAttachmentComponent } from '../letter-attachment/letter-attachmen
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    // myrmidon
-    NgToolsModule,
     // cadmus
-    CadmusUiModule,
+    CloseSaveButtonsComponent,
     LetterAttachmentComponent,
+    FlatLookupPipe,
   ],
   templateUrl: './letter-attachments-part.component.html',
   styleUrl: './letter-attachments-part.component.css',
@@ -99,7 +98,7 @@ export class LetterAttachmentsPartComponent
     // form
     this.attachments = formBuilder.control([], {
       // at least 1 entry
-      validators: NgToolsValidators.strictMinLengthValidator(1),
+      validators: NgxToolsValidators.strictMinLengthValidator(1),
       nonNullable: true,
     });
   }

@@ -4,13 +4,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ItemService, ThesaurusService } from '@myrmidon/cadmus-api';
 import { EditPartFeatureBase, PartEditorService } from '@myrmidon/cadmus-state';
-import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
+import { CurrentItemBarComponent } from '@myrmidon/cadmus-ui-pg';
 
 import { QuotedWorksPartComponent } from '@myrmidon/cadmus-lon-part-ui';
 
 @Component({
   selector: 'cadmus-lon-quoted-works-part-feature',
-  imports: [CadmusUiPgModule, QuotedWorksPartComponent],
+  imports: [CurrentItemBarComponent, QuotedWorksPartComponent],
   templateUrl: './quoted-works-part-feature.component.html',
   styleUrl: './quoted-works-part-feature.component.css',
 })

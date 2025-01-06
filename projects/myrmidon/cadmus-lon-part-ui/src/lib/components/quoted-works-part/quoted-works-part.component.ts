@@ -8,8 +8,8 @@ import {
 } from '@angular/forms';
 
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
-import { DialogService } from '@myrmidon/ng-mat-tools';
-import { NgToolsModule, NgToolsValidators } from '@myrmidon/ng-tools';
+import { DialogService } from '@myrmidon/ngx-mat-tools';
+import { FlatLookupPipe, NgxToolsValidators } from '@myrmidon/ngx-tools';
 
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,9 +23,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
 import {
-  CadmusUiModule,
+  CloseSaveButtonsComponent,
   EditedObject,
   ModelEditorComponentBase,
+  ThesaurusTreeComponent,
 } from '@myrmidon/cadmus-ui';
 
 import {
@@ -52,9 +53,10 @@ import { QuotedWorkComponent } from '../quoted-work/quoted-work.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    NgToolsModule,
-    CadmusUiModule,
+    CloseSaveButtonsComponent,
+    ThesaurusTreeComponent,
     QuotedWorkComponent,
+    FlatLookupPipe,
   ],
   templateUrl: './quoted-works-part.component.html',
   styleUrl: './quoted-works-part.component.css',
@@ -87,7 +89,7 @@ export class QuotedWorksPartComponent
     // form
     this.works = formBuilder.control([], {
       // at least 1 entry
-      validators: NgToolsValidators.strictMinLengthValidator(1),
+      validators: NgxToolsValidators.strictMinLengthValidator(1),
       nonNullable: true,
     });
   }

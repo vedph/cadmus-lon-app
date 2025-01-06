@@ -106,8 +106,8 @@
           [tagEntries]="sizeTagEntries"
           [unitEntries]="sizeUnitEntries"
           [dimTagEntries]="sizeDimTagEntries"
-          [size]="size.value"
-          (sizeChange)="onSizeChange($event)"
+          [size]="size.value || undefined"
+          (sizeChange)="onSizeChange($event!)"
         />
       </div>
       }
@@ -117,7 +117,7 @@
         [form]="form"
         [noSave]="userLevel < 2"
         (closeRequest)="close()"
-      ></cadmus-close-save-buttons>
+      />
     </mat-card-actions>
   </mat-card>
 </form>
