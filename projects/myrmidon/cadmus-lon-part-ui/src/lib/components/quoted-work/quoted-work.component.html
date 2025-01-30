@@ -1,11 +1,11 @@
 <form [formGroup]="form" (submit)="save()">
   <div class="form-row">
     <!-- role (bound) -->
-    @if (roleEntries?.length) {
+    @if (roleEntries()?.length) {
     <mat-form-field>
       <mat-label>role</mat-label>
       <mat-select [formControl]="role">
-        <mat-option *ngFor="let e of roleEntries" [value]="e.id">{{
+        <mat-option *ngFor="let e of roleEntries()" [value]="e.id">{{
           e.value
         }}</mat-option>
       </mat-select>

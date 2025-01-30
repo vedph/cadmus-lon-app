@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, effect, input, model, output } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -35,29 +34,12 @@ import { ThesaurusEntry } from '@myrmidon/cadmus-core';
   styleUrl: './quoted-work.component.css',
 })
 export class QuotedWorkComponent {
-  private _work: QuotedWork | undefined | null;
-
-  @Input()
-  public get work(): QuotedWork | undefined | null {
-    return this._work;
-  }
-  public set work(value: QuotedWork | undefined | null) {
-    if (this._work !== value) {
-      this._work = value;
-      this.updateForm(value);
-    }
-  }
+  public readonly work = model<QuotedWork>();
 
   // quoted-works-roles
-  @Input()
-  public roleEntries?: ThesaurusEntry[];
+  public readonly roleEntries = input<ThesaurusEntry[]>();
 
-  @Output()
-  public readonly workChange: EventEmitter<QuotedWork> =
-    new EventEmitter<QuotedWork>();
-
-  @Output()
-  public readonly workCancel: EventEmitter<void> = new EventEmitter<void>();
+  public readonly workCancel = output();
 
   public id: FormControl<string>;
   public role: FormControl<string>;
@@ -82,6 +64,10 @@ export class QuotedWorkComponent {
       role: this.role,
       location: this.location,
       note: this.note,
+    });
+
+    effect(() => {
+      this.updateForm(this.work());
     });
   }
 
@@ -116,7 +102,6 @@ export class QuotedWorkComponent {
     if (this.form.invalid) {
       return;
     }
-    this._work = this.getWork();
-    this.workChange.emit(this._work);
+    this.work.set(this.getWork());
   }
 }

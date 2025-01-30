@@ -23,7 +23,7 @@
             <tbody>
               @for (work of works.value; track work.id; let i = $index; let
               first = $first; let last = $last) {
-              <tr>
+              <tr [class.selected]="i === editedIndex">
                 <td class="fit-width">
                   <button
                     type="button"
@@ -59,7 +59,7 @@
                     matTooltip="Delete this work"
                     (click)="deleteWork(i)"
                   >
-                    <mat-icon>remove_circle</mat-icon>
+                    <mat-icon class="mat-warn">remove_circle</mat-icon>
                   </button>
                 </td>
                 <td>{{ work.id | flatLookup : idEntries : "id" : "value" }}</td>
@@ -80,7 +80,7 @@
             <cadmus-lon-quoted-work
               [roleEntries]="roleEntries"
               [work]="edited"
-              (workChange)="saveWork($event)"
+              (workChange)="saveWork($event!)"
               (workCancel)="closeWork()"
             />
           </mat-expansion-panel>

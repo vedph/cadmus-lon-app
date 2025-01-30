@@ -65,9 +65,7 @@ export class QuotedWorksPartComponent
   extends ModelEditorComponentBase<QuotedWorksPart>
   implements OnInit
 {
-  private _editedIndex: number;
-
-  public tabIndex: number;
+  public editedIndex: number;
   public edited?: QuotedWork;
 
   // quoted-works-ids (hierarchical)
@@ -84,8 +82,7 @@ export class QuotedWorksPartComponent
     private _dialogService: DialogService
   ) {
     super(authService, formBuilder);
-    this._editedIndex = -1;
-    this.tabIndex = 0;
+    this.editedIndex = -1;
     // form
     this.works = formBuilder.control([], {
       // at least 1 entry
@@ -158,19 +155,13 @@ export class QuotedWorksPartComponent
   }
 
   public editWork(work: QuotedWork, index: number): void {
-    this._editedIndex = index;
+    this.editedIndex = index;
     this.edited = work;
-    setTimeout(() => {
-      this.tabIndex = 1;
-    });
   }
 
   public closeWork(): void {
-    this._editedIndex = -1;
+    this.editedIndex = -1;
     this.edited = undefined;
-    setTimeout(() => {
-      this.tabIndex = 0;
-    });
   }
 
   public saveWork(work: QuotedWork): void {
@@ -184,10 +175,10 @@ export class QuotedWorksPartComponent
       return;
     }
 
-    if (this._editedIndex === -1) {
+    if (this.editedIndex === -1) {
       entries.push(work);
     } else {
-      entries.splice(this._editedIndex, 1, work);
+      entries.splice(this.editedIndex, 1, work);
     }
     this.works.setValue(entries);
     this.works.markAsDirty();
@@ -200,7 +191,7 @@ export class QuotedWorksPartComponent
       .confirm('Confirmation', 'Delete work?')
       .subscribe((yes: boolean | undefined) => {
         if (yes) {
-          if (this._editedIndex === index) {
+          if (this.editedIndex === index) {
             this.closeWork();
           }
           const entries = [...this.works.value];

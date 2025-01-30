@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, effect, input, model, output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -43,42 +43,21 @@ import { LetterAttachment } from '../../letter-attachments-part';
   styleUrl: './letter-attachment.component.css',
 })
 export class LetterAttachmentComponent {
-  private _attachment: LetterAttachment | undefined;
-
-  @Input()
-  public get attachment(): LetterAttachment | undefined {
-    return this._attachment;
-  }
-  public set attachment(value: LetterAttachment | undefined | null) {
-    if (this._attachment === value) {
-      return;
-    }
-    this._attachment = value || undefined;
-    this.updateForm(this._attachment);
-  }
+  public readonly attachment = model<LetterAttachment>();
 
   // letter-attachment-types
-  @Input()
-  public typeEntries?: ThesaurusEntry[];
+  public readonly typeEntries = input<ThesaurusEntry[]>();
 
   // physical-size-units
-  @Input()
-  public sizeUnitEntries?: ThesaurusEntry[];
+  public readonly sizeUnitEntries = input<ThesaurusEntry[]>();
 
   // physical-size-tags
-  @Input()
-  public sizeTagEntries?: ThesaurusEntry[];
+  public readonly sizeTagEntries = input<ThesaurusEntry[]>();
 
   // physical-size-dim-tags
-  @Input()
-  public sizeDimTagEntries?: ThesaurusEntry[];
+  public readonly sizeDimTagEntries = input<ThesaurusEntry[]>();
 
-  @Output()
-  public readonly attachmentChange: EventEmitter<LetterAttachment> =
-    new EventEmitter<LetterAttachment>();
-
-  @Output()
-  public readonly attachmentCancel: EventEmitter<any> = new EventEmitter<any>();
+  public readonly attachmentCancel = output();
 
   public type: FormControl<string | null>;
   public name: FormControl<string>;
@@ -104,6 +83,10 @@ export class LetterAttachmentComponent {
       note: this.note,
       hasSize: this.hasSize,
       size: this.size,
+    });
+
+    effect(() => {
+      this.updateForm(this.attachment());
     });
   }
 
@@ -145,7 +128,6 @@ export class LetterAttachmentComponent {
     if (this.form.invalid) {
       return;
     }
-    this._attachment = this.getAttachment();
-    this.attachmentChange.emit(this._attachment);
+    this.attachment.set(this.getAttachment());
   }
 }

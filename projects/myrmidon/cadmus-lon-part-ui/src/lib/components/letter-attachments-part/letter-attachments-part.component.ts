@@ -72,8 +72,7 @@ export class LetterAttachmentsPartComponent
   extends ModelEditorComponentBase<LetterAttachmentsPart>
   implements OnInit
 {
-  private _editedIndex: number;
-
+  public editedIndex: number;
   public edited?: LetterAttachment;
 
   // letter-attachment-types
@@ -94,7 +93,7 @@ export class LetterAttachmentsPartComponent
     private _dialogService: DialogService
   ) {
     super(authService, formBuilder);
-    this._editedIndex = -1;
+    this.editedIndex = -1;
     // form
     this.attachments = formBuilder.control([], {
       // at least 1 entry
@@ -181,21 +180,21 @@ export class LetterAttachmentsPartComponent
   }
 
   public editAttachment(attachment: LetterAttachment, index: number): void {
-    this._editedIndex = index;
+    this.editedIndex = index;
     this.edited = attachment;
   }
 
   public closeAttachment(): void {
-    this._editedIndex = -1;
+    this.editedIndex = -1;
     this.edited = undefined;
   }
 
   public saveAttachment(attachment: LetterAttachment): void {
     const entries = [...this.attachments.value];
-    if (this._editedIndex === -1) {
+    if (this.editedIndex === -1) {
       entries.push(attachment);
     } else {
-      entries.splice(this._editedIndex, 1, attachment);
+      entries.splice(this.editedIndex, 1, attachment);
     }
     this.attachments.setValue(entries);
     this.attachments.markAsDirty();
@@ -208,7 +207,7 @@ export class LetterAttachmentsPartComponent
       .confirm('Confirmation', 'Delete attachment?')
       .subscribe((yes: boolean | undefined) => {
         if (yes) {
-          if (this._editedIndex === index) {
+          if (this.editedIndex === index) {
             this.closeAttachment();
           }
           const entries = [...this.attachments.value];

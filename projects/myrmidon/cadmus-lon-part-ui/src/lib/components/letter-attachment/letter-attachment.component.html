@@ -1,11 +1,11 @@
 <form [formGroup]="form" (submit)="save()">
   <div class="form-row">
     <!-- type (bound) -->
-    @if (typeEntries?.length) {
+    @if (typeEntries()?.length) {
     <mat-form-field>
       <mat-label>type</mat-label>
       <mat-select [formControl]="type">
-        <mat-option *ngFor="let e of typeEntries" [value]="e.id">{{
+        <mat-option *ngFor="let e of typeEntries()" [value]="e.id">{{
           e.value
         }}</mat-option>
       </mat-select>
@@ -55,9 +55,9 @@
     @if (hasSize.value) {
     <div>
       <cadmus-mat-physical-size
-        [tagEntries]="sizeTagEntries"
-        [unitEntries]="sizeUnitEntries"
-        [dimTagEntries]="sizeDimTagEntries"
+        [tagEntries]="sizeTagEntries()"
+        [unitEntries]="sizeUnitEntries()"
+        [dimTagEntries]="sizeDimTagEntries()"
         [size]="size.value || undefined"
         (sizeChange)="onSizeChange($event!)"
       />
