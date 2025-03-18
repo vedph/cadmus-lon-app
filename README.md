@@ -18,6 +18,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2025-03-18: updated Angular and packages.
+
 ### 2.0.0
 
 - 2025-01-30: ⚠️ updated Angular and dependencies and migrated to signals.
