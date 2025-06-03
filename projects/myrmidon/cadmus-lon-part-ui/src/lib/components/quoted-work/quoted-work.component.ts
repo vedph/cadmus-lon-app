@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { CommonModule } from '@angular/common';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,15 +21,14 @@ import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 @Component({
   selector: 'cadmus-lon-quoted-work',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule,
-  ],
+    MatTooltipModule
+],
   templateUrl: './quoted-work.component.html',
   styleUrl: './quoted-work.component.css',
 })

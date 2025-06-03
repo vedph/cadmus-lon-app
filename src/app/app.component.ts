@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -31,15 +31,14 @@ import {
 @Component({
   selector: 'app-root',
   imports: [
-    CommonModule,
     RouterModule,
     RouterOutlet,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    GravatarPipe,
-  ],
+    GravatarPipe
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

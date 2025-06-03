@@ -4,109 +4,120 @@
     <a mat-button routerLink="/home">Cadmus LON</a>
 
     <!-- items menu -->
-    <button
-      type="button"
-      mat-button
-      [matMenuTriggerFor]="itemMenu"
-      *ngIf="logged && itemBrowsers"
-    >
-      Items
-    </button>
+    @if (logged && itemBrowsers) {
+      <button
+        type="button"
+        mat-button
+        [matMenuTriggerFor]="itemMenu"
+        >
+        Items
+      </button>
+    }
     <mat-menu #itemMenu>
       <a mat-menu-item routerLink="/items">Items</a>
-      <a
-        mat-menu-item
-        *ngFor="let entry of itemBrowsers"
-        [routerLink]="'item-browser/' + getItemBrowserRoute(entry.id)"
-      ></a>
+      @for (entry of itemBrowsers; track entry) {
+        <a
+          mat-menu-item
+          [routerLink]="'item-browser/' + getItemBrowserRoute(entry.id)"
+        ></a>
+      }
     </mat-menu>
     <!-- item menu -->
-    <ng-container *ngIf="logged && !itemBrowsers">
+    @if (logged && !itemBrowsers) {
       <button type="button" mat-button routerLink="/items">Items</button>
-    </ng-container>
-
-    <!-- search menu -->
-    <button type="button" mat-button routerLink="/search" *ngIf="logged">
-      Search
-    </button>
-    <!-- graph menu -->
-    <!-- <button type="button" mat-button routerLink="/graph" *ngIf="logged">
-      Graph
-    </button> -->
-    <!-- profile menu -->
-    <ng-container *ngIf="user && user.roles.includes('admin')">
-      <button type="button" mat-button [matMenuTriggerFor]="profileMenu">
-        Profile
-      </button>
-      <mat-menu #profileMenu>
-        <a mat-menu-item routerLink="/flags"> Flags </a>
-        <a mat-menu-item routerLink="/thesauri"> Thesauri </a>
-      </mat-menu>
-    </ng-container>
-
-    <!-- biblio menu -->
-    @if ( user && (user.roles.includes('admin') ||
-    user.roles.includes('editor')) ) {
-    <button type="button" mat-button routerLink="/biblio">Bibliography</button>
     }
 
-    <span class="tb-fill-remaining-space"></span>
+    <!-- search menu -->
+    @if (logged) {
+      <button type="button" mat-button routerLink="/search">
+        Search
+      </button>
+    }
+    <!-- graph menu -->
+    <!-- <button type="button" mat-button routerLink="/graph" *ngIf="logged">
+    Graph
+  </button> -->
+  <!-- profile menu -->
+  @if (user && user.roles.includes('admin')) {
+    <button type="button" mat-button [matMenuTriggerFor]="profileMenu">
+      Profile
+    </button>
+    <mat-menu #profileMenu>
+      <a mat-menu-item routerLink="/flags"> Flags </a>
+      <a mat-menu-item routerLink="/thesauri"> Thesauri </a>
+    </mat-menu>
+  }
 
-    <!-- user -->
-    <div *ngIf="user">
+  <!-- biblio menu -->
+  @if ( user && (user.roles.includes('admin') ||
+    user.roles.includes('editor')) ) {
+    <button type="button" mat-button routerLink="/biblio">Bibliography</button>
+  }
+
+  <span class="tb-fill-remaining-space"></span>
+
+  <!-- user -->
+  @if (user) {
+    <div>
       <!-- indicators -->
       <img
         alt="avatar"
         [src]="user.email | gravatar : 32"
         [alt]="user.userName"
-      />
-      <mat-icon
-        class="small-icon"
-        *ngIf="user && user.roles.includes('admin')"
-        title="admin"
-        >build</mat-icon
-      >
-      <mat-icon
-        class="small-icon"
-        *ngIf="user && !user.emailConfirmed"
-        title="You must verify your email address! Please check your mailbox "
-        >feedback</mat-icon
-      >
-      <!-- <button mat-icon-button [mat-menu-trigger-for]="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button> -->
-
-      <!-- user menu -->
-      <button type="button" mat-button [matMenuTriggerFor]="userMenu">
-        User
-      </button>
-      <mat-menu #userMenu>
-        <a mat-menu-item routerLink="/reset-password">Reset password</a>
-      </mat-menu>
-
-      <!-- admin menu -->
-      <button
-        type="button"
-        *ngIf="user && user.roles.includes('admin')"
-        mat-button
-        [matMenuTriggerFor]="adminMenu"
-      >
-        Admin
-      </button>
-      <mat-menu #adminMenu>
-        <a mat-menu-item routerLink="/manage-users">Manage users</a>
-        <a mat-menu-item routerLink="/register-user">Register user</a>
-      </mat-menu>
-    </div>
+        />
+        @if (user && user.roles.includes('admin')) {
+          <mat-icon
+            class="small-icon"
+            title="admin"
+            >build</mat-icon
+            >
+        }
+        @if (user && !user.emailConfirmed) {
+          <mat-icon
+            class="small-icon"
+            title="You must verify your email address! Please check your mailbox "
+            >feedback</mat-icon
+            >
+          }
+          <!-- <button mat-icon-button [mat-menu-trigger-for]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button> -->
+        <!-- user menu -->
+        <button type="button" mat-button [matMenuTriggerFor]="userMenu">
+          User
+        </button>
+        <mat-menu #userMenu>
+          <a mat-menu-item routerLink="/reset-password">Reset password</a>
+        </mat-menu>
+        <!-- admin menu -->
+        @if (user && user.roles.includes('admin')) {
+          <button
+            type="button"
+            mat-button
+            [matMenuTriggerFor]="adminMenu"
+            >
+            Admin
+          </button>
+        }
+        <mat-menu #adminMenu>
+          <a mat-menu-item routerLink="/manage-users">Manage users</a>
+          <a mat-menu-item routerLink="/register-user">Register user</a>
+        </mat-menu>
+      </div>
+    }
 
     <!-- login -->
-    <button type="button" *ngIf="!logged" mat-icon-button routerLink="/login">
-      <mat-icon>login</mat-icon>
-    </button>
+    @if (!logged) {
+      <button type="button" mat-icon-button routerLink="/login">
+        <mat-icon>login</mat-icon>
+      </button>
+    }
     <!-- logout -->
-    <button type="button" *ngIf="logged" mat-icon-button (click)="logout()">
-      <mat-icon>logout</mat-icon>
-    </button>
+    @if (logged) {
+      <button type="button" mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    }
   </mat-toolbar>
 </header>
 
@@ -120,8 +131,8 @@
       Cadmus LON by
       <a rel="noopener" href="https://myrmex.github.io/overview" target="_blank"
         >Daniele Fusi</a
-      >
-      - version {{ version }}
-    </p>
-  </div>
-</footer>
+        >
+        - version {{ version }}
+      </p>
+    </div>
+  </footer>

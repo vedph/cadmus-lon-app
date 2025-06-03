@@ -10,31 +10,33 @@
       <div class="form-row">
         <!-- archive (bound) -->
         @if (archiveEntries?.length) {
-        <mat-form-field>
-          <mat-label>archive</mat-label>
-          <mat-select [formControl]="archive">
-            <mat-option *ngFor="let e of archiveEntries" [value]="e.id">{{
-              e.value
-            }}</mat-option>
-          </mat-select>
-          @if ($any(archive).errors?.required && (archive.dirty ||
-          archive.touched)) {
-          <mat-error>archive required</mat-error>
-          }
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label>archive</mat-label>
+            <mat-select [formControl]="archive">
+              @for (e of archiveEntries; track e) {
+                <mat-option [value]="e.id">{{
+                  e.value
+                }}</mat-option>
+              }
+            </mat-select>
+            @if ($any(archive).errors?.required && (archive.dirty ||
+              archive.touched)) {
+              <mat-error>archive required</mat-error>
+            }
+          </mat-form-field>
         } @else {
-        <!-- archive (free) -->
-        <mat-form-field>
-          <mat-label>archive</mat-label>
-          <input matInput [formControl]="archive" />
-          @if ($any(archive).errors?.required && (archive.dirty ||
-          archive.touched)) {
-          <mat-error>archive required</mat-error>
-          } @if ($any(archive).errors?.maxLength && (archive.dirty ||
-          archive.touched)) {
-          <mat-error>archive too long</mat-error>
-          }
-        </mat-form-field>
+          <!-- archive (free) -->
+          <mat-form-field>
+            <mat-label>archive</mat-label>
+            <input matInput [formControl]="archive" />
+            @if ($any(archive).errors?.required && (archive.dirty ||
+              archive.touched)) {
+              <mat-error>archive required</mat-error>
+              } @if ($any(archive).errors?.maxLength && (archive.dirty ||
+              archive.touched)) {
+              <mat-error>archive too long</mat-error>
+            }
+          </mat-form-field>
         }
 
         <!-- shelfmark -->
@@ -42,8 +44,8 @@
           <mat-label>shelfmark</mat-label>
           <input matInput [formControl]="shelfmark" />
           @if ($any(shelfmark).errors?.maxLength && (shelfmark.dirty ||
-          shelfmark.touched)) {
-          <mat-error>shelfmark too long</mat-error>
+            shelfmark.touched)) {
+            <mat-error>shelfmark too long</mat-error>
           }
         </mat-form-field>
       </div>
@@ -53,31 +55,33 @@
         <div>
           <!-- language (bound) -->
           @if (languageEntries?.length) {
-          <mat-form-field>
-            <mat-label>language</mat-label>
-            <mat-select [formControl]="language">
-              <mat-option *ngFor="let e of languageEntries" [value]="e.id">{{
-                e.value
-              }}</mat-option>
-            </mat-select>
-            @if ($any(language).errors?.required && (language.dirty ||
-            language.touched)) {
-            <mat-error>language required</mat-error>
-            }
-          </mat-form-field>
+            <mat-form-field>
+              <mat-label>language</mat-label>
+              <mat-select [formControl]="language">
+                @for (e of languageEntries; track e) {
+                  <mat-option [value]="e.id">{{
+                    e.value
+                  }}</mat-option>
+                }
+              </mat-select>
+              @if ($any(language).errors?.required && (language.dirty ||
+                language.touched)) {
+                <mat-error>language required</mat-error>
+              }
+            </mat-form-field>
           } @else {
-          <!-- language (free) -->
-          <mat-form-field>
-            <mat-label>language</mat-label>
-            <input matInput [formControl]="language" />
-            @if ($any(language).errors?.required && (language.dirty ||
-            language.touched)) {
-            <mat-error>language required</mat-error>
-            } @if ($any(language).errors?.maxLength && (language.dirty ||
-            language.touched)) {
-            <mat-error>language too long</mat-error>
-            }
-          </mat-form-field>
+            <!-- language (free) -->
+            <mat-form-field>
+              <mat-label>language</mat-label>
+              <input matInput [formControl]="language" />
+              @if ($any(language).errors?.required && (language.dirty ||
+                language.touched)) {
+                <mat-error>language required</mat-error>
+                } @if ($any(language).errors?.maxLength && (language.dirty ||
+                language.touched)) {
+                <mat-error>language too long</mat-error>
+              }
+            </mat-form-field>
           }
         </div>
         <!-- languages -->
@@ -101,23 +105,23 @@
       <!-- size -->
       <mat-checkbox [formControl]="hasSize">size</mat-checkbox>
       @if (hasSize.value) {
-      <div>
-        <cadmus-mat-physical-size
-          [tagEntries]="sizeTagEntries"
-          [unitEntries]="sizeUnitEntries"
-          [dimTagEntries]="sizeDimTagEntries"
-          [size]="size.value || undefined"
-          (sizeChange)="onSizeChange($event!)"
-        />
-      </div>
-      }
-    </mat-card-content>
-    <mat-card-actions>
-      <cadmus-close-save-buttons
-        [form]="form"
-        [noSave]="userLevel < 2"
-        (closeRequest)="close()"
-      />
-    </mat-card-actions>
-  </mat-card>
-</form>
+        <div>
+          <cadmus-mat-physical-size
+            [tagEntries]="sizeTagEntries"
+            [unitEntries]="sizeUnitEntries"
+            [dimTagEntries]="sizeDimTagEntries"
+            [size]="size.value || undefined"
+            (sizeChange)="onSizeChange($event!)"
+            />
+          </div>
+        }
+      </mat-card-content>
+      <mat-card-actions>
+        <cadmus-close-save-buttons
+          [form]="form"
+          [noSave]="userLevel < 2"
+          (closeRequest)="close()"
+          />
+        </mat-card-actions>
+      </mat-card>
+    </form>

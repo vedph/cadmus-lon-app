@@ -3,13 +3,13 @@ import { take } from 'rxjs';
 
 import { ThesaurusService } from '@myrmidon/cadmus-api';
 import { ThesaurusEntry } from '@myrmidon/cadmus-core';
-import { CommonModule } from '@angular/common';
+
 import { MatCardModule } from '@angular/material/card';
 import { WorkListComponent } from '@myrmidon/cadmus-biblio-ui';
 
 @Component({
   selector: 'cadmus-biblio-page',
-  imports: [CommonModule, MatCardModule, WorkListComponent],
+  imports: [MatCardModule, WorkListComponent],
   templateUrl: './biblio-page.component.html',
   styleUrls: ['./biblio-page.component.scss'],
 })

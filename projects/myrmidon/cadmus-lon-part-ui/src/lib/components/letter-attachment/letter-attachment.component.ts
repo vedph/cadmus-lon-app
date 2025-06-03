@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, effect, input, model, output } from '@angular/core';
 import {
   FormBuilder,
@@ -28,7 +28,6 @@ import { LetterAttachment } from '../../letter-attachments-part';
 @Component({
   selector: 'cadmus-lon-letter-attachment',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -37,8 +36,8 @@ import { LetterAttachment } from '../../letter-attachments-part';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    PhysicalSizeComponent,
-  ],
+    PhysicalSizeComponent
+],
   templateUrl: './letter-attachment.component.html',
   styleUrl: './letter-attachment.component.css',
 })

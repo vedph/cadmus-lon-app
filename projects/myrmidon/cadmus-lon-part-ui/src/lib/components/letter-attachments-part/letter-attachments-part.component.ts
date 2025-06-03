@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -48,9 +48,7 @@ import { LetterAttachmentComponent } from '../letter-attachment/letter-attachmen
 @Component({
   selector: 'cadmus-lon-letter-attachments-part',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
-    // material
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -60,11 +58,10 @@ import { LetterAttachmentComponent } from '../letter-attachment/letter-attachmen
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    // cadmus
     CloseSaveButtonsComponent,
     LetterAttachmentComponent,
-    FlatLookupPipe,
-  ],
+    FlatLookupPipe
+],
   templateUrl: './letter-attachments-part.component.html',
   styleUrl: './letter-attachments-part.component.css',
 })
