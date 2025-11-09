@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -25,10 +24,13 @@ import { DialogService } from '@myrmidon/ngx-mat-tools';
 import { FlatLookupPipe, NgxToolsValidators } from '@myrmidon/ngx-tools';
 
 // cadmus
-import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
+import {
+  ThesauriSet,
+  ThesaurusEntry,
+  EditedObject,
+} from '@myrmidon/cadmus-core';
 import {
   CloseSaveButtonsComponent,
-  EditedObject,
   ModelEditorComponentBase,
 } from '@myrmidon/cadmus-ui';
 
@@ -60,8 +62,8 @@ import { LetterAttachmentComponent } from '../letter-attachment/letter-attachmen
     MatTooltipModule,
     CloseSaveButtonsComponent,
     LetterAttachmentComponent,
-    FlatLookupPipe
-],
+    FlatLookupPipe,
+  ],
   templateUrl: './letter-attachments-part.component.html',
   styleUrl: './letter-attachments-part.component.css',
 })

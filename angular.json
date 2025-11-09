@@ -31,7 +31,11 @@
             ],
             "styles": ["src/styles.scss"],
             "scripts": [],
-            "allowedCommonJsDependencies": ["dagre", "webcola"]
+            "allowedCommonJsDependencies": [
+              "dagre",
+              "webcola",
+              "ngraph.forcelayout"
+            ]
           },
           "configurations": {
             "production": {

@@ -11,7 +11,6 @@ import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 import { DialogService } from '@myrmidon/ngx-mat-tools';
 import { FlatLookupPipe, NgxToolsValidators } from '@myrmidon/ngx-tools';
 
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -21,10 +20,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
+import {
+  EditedObject,
+  ThesauriSet,
+  ThesaurusEntry,
+} from '@myrmidon/cadmus-core';
 import {
   CloseSaveButtonsComponent,
-  EditedObject,
   ModelEditorComponentBase,
   ThesaurusTreeComponent,
 } from '@myrmidon/cadmus-ui';
@@ -55,8 +57,8 @@ import { QuotedWorkComponent } from '../quoted-work/quoted-work.component';
     CloseSaveButtonsComponent,
     ThesaurusTreeComponent,
     QuotedWorkComponent,
-    FlatLookupPipe
-],
+    FlatLookupPipe,
+  ],
   templateUrl: './quoted-works-part.component.html',
   styleUrl: './quoted-works-part.component.css',
 })

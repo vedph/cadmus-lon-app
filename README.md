@@ -18,6 +18,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2025-11-09:
+  - ⚠️ upgraded Angular and packages.
+  - updated routes and guards.
+  - added stats page.
 - 2025-06-03:
   - ⚠️ upgraded to Angular 20.
   - better loading message.

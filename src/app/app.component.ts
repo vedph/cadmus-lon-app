@@ -13,7 +13,6 @@ import { EnvService, RamStorageService } from '@myrmidon/ngx-tools';
 import { User, AuthJwtService, GravatarPipe } from '@myrmidon/auth-jwt-login';
 
 // bricks
-import { ASSERTED_COMPOSITE_ID_CONFIGS_KEY } from '@myrmidon/cadmus-refs-asserted-ids';
 import { ViafRefLookupService } from '@myrmidon/cadmus-refs-viaf-lookup';
 import { DbpediaRefLookupService } from '@myrmidon/cadmus-refs-dbpedia-lookup';
 import { GeoNamesRefLookupService } from '@myrmidon/cadmus-refs-geonames-lookup';
@@ -21,7 +20,10 @@ import { GeoNamesRefLookupService } from '@myrmidon/cadmus-refs-geonames-lookup'
 // cadmus
 import { Thesaurus, ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { AppRepository } from '@myrmidon/cadmus-state';
-import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
+import {
+  LOOKUP_CONFIGS_KEY,
+  RefLookupConfig,
+} from '@myrmidon/cadmus-refs-lookup';
 import { WorkRefLookupService } from '@myrmidon/cadmus-biblio-ui';
 import {
   GeoJsonFeature,
@@ -37,8 +39,8 @@ import {
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    GravatarPipe
-],
+    GravatarPipe,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -69,7 +71,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._subs = [];
 
     // configure external lookup for asserted composite IDs
-    storage.store(ASSERTED_COMPOSITE_ID_CONFIGS_KEY, [
+    storage.store(LOOKUP_CONFIGS_KEY, [
       {
         name: 'biblio',
         iconUrl: 'img/biblio128.png',

@@ -1,11 +1,10 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withViewTransitions } from '@angular/router';
 import {
-  provideHttpClient,
-  withInterceptors,
-  withJsonpSupport,
-} from '@angular/common/http';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+  ApplicationConfig,
+  importProvidersFrom,
+  provideZoneChangeDetection,
+} from '@angular/core';
+import { provideRouter, withViewTransitions } from '@angular/router';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 // material
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -13,6 +12,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 // vendor
 import { NgeMonacoModule } from '@cisstech/nge/monaco';
 import { NgeMarkdownModule } from '@cisstech/nge/markdown';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 // myrmidon
 import { authJwtInterceptor } from '@myrmidon/auth-jwt-login';
@@ -40,14 +40,15 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),
-    provideAnimationsAsync(),
-    provideHttpClient(
-      withJsonpSupport(),
-      withInterceptors([authJwtInterceptor])
-    ),
+    provideHttpClient(withInterceptors([authJwtInterceptor])),
     provideNativeDateAdapter(),
     importProvidersFrom(NgeMonacoModule.forRoot({})),
     importProvidersFrom(NgeMarkdownModule),
+    importProvidersFrom(
+      NgxEchartsModule.forRoot({
+        echarts: () => import('echarts'),
+      })
+    ),
     // parts and fragments type IDs to editor group keys mappings
     // https://github.com/nrwl/nx/issues/208#issuecomment-384102058
     // inject like: @Inject('partEditorKeys') partEditorKeys: PartEditorKeys
@@ -117,9 +118,9 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: WHG_USERNAME_TOKEN,
-      useValue: 'myrmex'
+      useValue: 'myrmex',
     },
-        // proxy
+    // proxy
     {
       provide: PROXY_INTERCEPTOR_OPTIONS,
       useValue: {

@@ -31,14 +31,17 @@ import {
 } from '@myrmidon/cadmus-ui-flags-picker';
 
 // cadmus
-import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
+import {
+  ThesauriSet,
+  ThesaurusEntry,
+  EditedObject,
+} from '@myrmidon/cadmus-core';
 import {
   PhysicalSize,
   PhysicalSizeComponent,
 } from '@myrmidon/cadmus-mat-physical-size';
 import {
   ModelEditorComponentBase,
-  EditedObject,
   CloseSaveButtonsComponent,
 } from '@myrmidon/cadmus-ui';
 
